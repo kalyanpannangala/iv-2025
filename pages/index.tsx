@@ -142,11 +142,12 @@ const HomePage = () => {
       {/* Premium Header */}
       <motion.header 
         className="fixed top-0 left-0 right-0 z-50 py-6 px-8 flex justify-center backdrop-blur-sm bg-white/80"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+       
       >
-        <div className="flex space-x-8">
+         <div className="flex space-x-8">
+        
+        <img src="/favicon.ico" alt="Logo" className="flex space-x-8" />
+      
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

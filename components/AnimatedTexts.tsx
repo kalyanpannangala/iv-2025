@@ -52,10 +52,7 @@ const AnimatedTexts: React.FC<AnimatedTextsProps> = ({ currentGif }) => (
   </div>
 </div>
 
-    {/* Existing Animated Status */}
-    <div className="absolute bottom-4 left-4 z-50">
-      <img src={currentGif} alt="Animated status" className="w-48 h-48" />
-    </div>
+   
 
     {/* Animation Styles */}
     <style jsx>{`
