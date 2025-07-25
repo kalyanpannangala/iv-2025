@@ -37,7 +37,7 @@ const LiveMap = () => {
 
           const info =
             diff < 2
-              ? '🟢 Live location active'
+              ? '🟢 Live location'
               : `🟡 Last seen ${diff} minute(s) ago`;
 
           infoText.textContent = info;
