@@ -21,12 +21,17 @@ const LiveMap = () => {
 
       const fetchLocation = async () => {
         try {
-          const res = await fetch('/api/admin-location');
+          const res = await fetch('/api/adminGPS/admin-location');
           if (!res.ok) throw new Error('Failed to fetch admin location');
+
           const data = await res.json();
 
+          if (!data.latitude || !data.longitude || !data.timestamp) {
+            throw new Error('Incomplete location data');
+          }
+
           const coords: [number, number] = [data.latitude, data.longitude];
-          const updatedAt = new Date(data.lastUpdated);
+          const updatedAt = new Date(data.timestamp);
           const now = new Date();
           const diff = Math.floor((now.getTime() - updatedAt.getTime()) / 60000); // in minutes
 
@@ -36,10 +41,11 @@ const LiveMap = () => {
               : `🟡 Last seen ${diff} minute(s) ago`;
 
           infoText.textContent = info;
+          infoText.style.color = diff < 2 ? 'green' : 'orange';
 
           if (!marker) {
             const busIcon = L.icon({
-              iconUrl: '/bus-icon.png', // Replace with your icon
+              iconUrl: '/bus-icon.png', // Replace with your icon path
               iconSize: [32, 32],
               iconAnchor: [16, 16],
             });
@@ -49,16 +55,18 @@ const LiveMap = () => {
             marker.setLatLng(coords);
           }
 
-          map.setView(coords, 15); // Zoom to bus location
+          map.setView(coords, 15); // Zoom to location
         } catch (err) {
-          console.error(err);
+          console.error('❌ Error:', err);
           infoText.textContent = '🔴 Unable to fetch bus location';
-          infoText.style.color = 'black';
+          infoText.style.color = 'red';
         }
       };
 
-      fetchLocation(); // initial fetch
-      setInterval(fetchLocation, 10000); // every 10s
+      fetchLocation(); // initial call
+      const interval = setInterval(fetchLocation, 10000); // repeat every 10 sec
+
+      return () => clearInterval(interval); // cleanup
     };
 
     initMap();
