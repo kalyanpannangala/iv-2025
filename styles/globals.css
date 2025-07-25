@@ -19,6 +19,24 @@
   }
 }
 
+@keyframes puff {
+  0% { transform: translateX(0) scale(0); opacity: 0; }
+  50% { transform: translateX(8px) scale(1); opacity: 0.7; }
+  100% { transform: translateX(16px) scale(0); opacity: 0; }
+}
+.animate-puff {
+  animation: puff 0.8s linear infinite;
+}
+
+@keyframes moveBusFast {
+  0% { transform: translateX(-100%) translateY(-50%); }
+  100% { transform: translateX(100vw) translateY(-50%); }
+}
+@keyframes roadLines {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
