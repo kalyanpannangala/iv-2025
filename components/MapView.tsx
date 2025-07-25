@@ -1,111 +1,84 @@
-import React, { useEffect, useRef, useState } from "react";
-import L, { LatLngTuple } from "leaflet";
-import "leaflet/dist/leaflet.css";
-import { LOCATION_EVENTS } from "../config";
-import AnimatedTexts from "./AnimatedTexts";
+'use client';
 
-const LiveMap: React.FC = () => {
-    const mapRef = useRef<L.Map | null>(null);
-    const markerRef = useRef<L.Marker | null>(null);
-    const [currentGif, setCurrentGif] = useState("/gifs/travel.gif");
+import { useEffect } from 'react';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
-    useEffect(() => {
-        if (typeof window === "undefined") return;
+const LiveMap = () => {
+  useEffect(() => {
+    let map: L.Map;
+    let marker: L.Marker;
+    let infoText: HTMLElement;
 
-        async function initMap() {
-            let route: LatLngTuple[] = [];
-            try {
-                const resp = await fetch("/api/route");
-                if (!resp.ok) throw new Error("Failed to fetch route from API");
-                const data: { route: [number, number][] } = await resp.json();
-                if (!data.route || data.route.length === 0) throw new Error("Empty route data");
-                route = data.route;
-            } catch (error) {
-                console.error("Route fetch error:", error);
-                return;
-            }
+    const initMap = async () => {
+      map = L.map('map').setView([20.5937, 78.9629], 5); // Center of India
 
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors',
+      }).addTo(map);
+
+      infoText = document.getElementById('status-text')!;
+
+      const fetchLocation = async () => {
+        try {
+          const res = await fetch('/api/admin-location');
+          if (!res.ok) throw new Error('Failed to fetch admin location');
+          const data = await res.json();
+
+          const coords: [number, number] = [data.latitude, data.longitude];
+          const updatedAt = new Date(data.lastUpdated);
+          const now = new Date();
+          const diff = Math.floor((now.getTime() - updatedAt.getTime()) / 60000); // in minutes
+
+          const info =
+            diff < 2
+              ? '🟢 Live location active'
+              : `🟡 Last seen ${diff} minute(s) ago`;
+
+          infoText.textContent = info;
+
+          if (!marker) {
             const busIcon = L.icon({
-                iconUrl: "/bus.gif",
-                iconSize: [80, 80],
-                iconAnchor: [60, 80],
+              iconUrl: '/bus-icon.png', // Replace with your icon
+              iconSize: [32, 32],
+              iconAnchor: [16, 16],
             });
 
-            const drawMap = (centerPos: LatLngTuple, zoomLevel = 30) => {
-                if (!mapRef.current) {
-                    mapRef.current = L.map("map").setView(centerPos, zoomLevel);
-                    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                        attribution: "&copy; OpenStreetMap contributors",
-                    }).addTo(mapRef.current);
-                }
+            marker = L.marker(coords, { icon: busIcon }).addTo(map);
+          } else {
+            marker.setLatLng(coords);
+          }
 
-                // Draw red route
-                const polyline = L.polyline(route, { color: "red", weight: 4 }).addTo(mapRef.current!);
-
-                // ✅ Only add ONE bus marker
-                const marker = L.marker(centerPos, { icon: busIcon }).addTo(mapRef.current!);
-                markerRef.current = marker;
-            };
-
-            // Track location
-            const handleGeoSuccess = (pos: GeolocationPosition) => {
-                const currentPos: LatLngTuple = [pos.coords.latitude, pos.coords.longitude];
-                drawMap(currentPos, 16); // zoom to live location
-
-                navigator.geolocation.watchPosition(
-                    (pos) => {
-                        const updatedPos: LatLngTuple = [pos.coords.latitude, pos.coords.longitude];
-
-                        // ✅ Just MOVE the existing marker
-                        if (markerRef.current) {
-                            markerRef.current.setLatLng(updatedPos);
-                            mapRef.current?.setView(updatedPos);
-                        }
-
-                        // Animated events
-                        let matched = false;
-                        for (const loc of LOCATION_EVENTS) {
-                            const dist = mapRef.current!.distance(updatedPos, loc.coords as LatLngTuple);
-                            if (dist < loc.radius) {
-                                setCurrentGif(loc.gif);
-                                matched = true;
-                                break;
-                            }
-                        }
-                        if (!matched) setCurrentGif("/gifs/travel.gif");
-                    },
-                    (err) => {
-                        console.error("Geolocation watch error:", err);
-                    },
-                    { enableHighAccuracy: true }
-                );
-            };
-
-            const handleGeoError = (err: GeolocationPositionError) => {
-                console.error("Geolocation error:", err);
-                const fallbackCenter = route[0];
-                drawMap(fallbackCenter, 13);
-                mapRef.current?.fitBounds(L.polyline(route).getBounds());
-            };
-
-            navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoError, {
-                enableHighAccuracy: true,
-            });
+          map.setView(coords, 15); // Zoom to bus location
+        } catch (err) {
+          console.error(err);
+          infoText.textContent = '🔴 Unable to fetch bus location';
+          infoText.style.color = 'black';
         }
+      };
 
-        initMap();
+      fetchLocation(); // initial fetch
+      setInterval(fetchLocation, 10000); // every 10s
+    };
 
-        return () => {
-            mapRef.current?.remove();
-        };
-    }, []);
+    initMap();
 
-    return (
-        <div className="relative w-full h-screen">
-            <div id="map" className="w-full h-full" />
-            <AnimatedTexts currentGif={currentGif} />
-        </div>
-    );
+    return () => {
+      map?.remove();
+    };
+  }, []);
+
+  return (
+    <div className="w-full h-full relative">
+      <div id="map" className="w-full h-[90vh]" />
+      <div
+        id="status-text"
+        className="absolute top-4 right-4 bg-white text-sm rounded px-3 py-1 shadow-md z-[1000]"
+      >
+        Loading location...
+      </div>
+    </div>
+  );
 };
 
 export default LiveMap;
