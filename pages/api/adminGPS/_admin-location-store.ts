@@ -1,6 +1,9 @@
-// In-memory store (No DB required)
-export const latestLocation: {
-  latitude?: number;
-  longitude?: number;
-  lastUpdated?: string;
-} = {};
+// /pages/api/adminGPS/_admin-location-store.ts
+
+export type AdminLocation = {
+  latitude: number;
+  longitude: number;
+  lastUpdated: string;
+} | null;
+
+export let latestLocation: AdminLocation = null;

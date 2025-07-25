@@ -1,92 +1,112 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { ROUTE_COORDINATES } from '../config';
 
-const LiveMap = () => {
+export default function LiveMap() {
+  const mapRef = useRef<L.Map | null>(null);
+  const markerRef = useRef<L.Marker | null>(null);
+
   useEffect(() => {
-    let map: L.Map;
-    let marker: L.Marker;
-    let infoText: HTMLElement;
-
     const initMap = async () => {
-      map = L.map('map').setView([20.5937, 78.9629], 5); // Center of India
+      let lat: number | null = null;
+      let lng: number | null = null;
+      let lastUpdated: string | null = null;
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors',
-      }).addTo(map);
+      try {
+        const res = await fetch('/api/adminGPS/admin-location');
 
-      infoText = document.getElementById('status-text')!;
-
-      const fetchLocation = async () => {
-        try {
-          const res = await fetch('/api/adminGPS/admin-location');
-          if (!res.ok) throw new Error('Failed to fetch admin location');
-
-          const data = await res.json();
-
-          if (!data.latitude || !data.longitude || !data.timestamp) {
-            throw new Error('Incomplete location data');
-          }
-
-          const coords: [number, number] = [data.latitude, data.longitude];
-          const updatedAt = new Date(data.timestamp);
-          const now = new Date();
-          const diff = Math.floor((now.getTime() - updatedAt.getTime()) / 60000); // in minutes
-
-          const info =
-            diff < 2
-              ? '🟢 Live location'
-              : `🟡 Last seen ${diff} minute(s) ago`;
-
-          infoText.textContent = info;
-          infoText.style.color = diff < 2 ? 'green' : 'orange';
-
-          if (!marker) {
-            const busIcon = L.icon({
-              iconUrl: '/bus-icon.png', // Replace with your icon path
-              iconSize: [32, 32],
-              iconAnchor: [16, 16],
-            });
-
-            marker = L.marker(coords, { icon: busIcon }).addTo(map);
+        if (!res.ok) {
+          console.warn('⚠️ Response not OK', res.status);
+          const errorData = await res.json().catch(() => null);
+          if (errorData?.latitude && errorData?.longitude) {
+            lat = errorData.latitude;
+            lng = errorData.longitude;
+            lastUpdated = errorData.lastUpdated ?? null;
           } else {
-            marker.setLatLng(coords);
+            throw new Error('No fallback coordinates available');
           }
-
-          map.setView(coords, 15); // Zoom to location
-        } catch (err) {
-          console.error('❌ Error:', err);
-          infoText.textContent = '🔴 Unable to fetch bus location';
-          infoText.style.color = 'red';
+        } else {
+          const data = await res.json();
+          lat = data.lat ?? data.latitude;
+          lng = data.lng ?? data.longitude;
+          lastUpdated = data.lastUpdated ?? null;
         }
-      };
 
-      fetchLocation(); // initial call
-      const interval = setInterval(fetchLocation, 10000); // repeat every 10 sec
+        if (typeof lat !== 'number' || typeof lng !== 'number') {
+          throw new Error('Invalid coordinates');
+        }
 
-      return () => clearInterval(interval); // cleanup
+        const coords: [number, number] = [lat, lng];
+
+        // Init map
+        if (!mapRef.current) {
+          mapRef.current = L.map('map', {
+            center: coords,
+            zoom: 14,
+          });
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+          }).addTo(mapRef.current);
+
+          L.polyline(ROUTE_COORDINATES, {
+            color: 'red',
+            weight: 4,
+            dashArray: '6, 6',
+          }).addTo(mapRef.current);
+        }
+
+        const busIcon = L.icon({
+          iconUrl: '/bus.gif',
+          iconSize: [50, 50],
+          iconAnchor: [25, 25],
+        });
+
+        if (!markerRef.current) {
+          markerRef.current = L.marker(coords, { icon: busIcon }).addTo(mapRef.current);
+        } else {
+          markerRef.current.setLatLng(coords);
+        }
+
+        const infoText = document.getElementById('infoText');
+        if (infoText) {
+          if (lastUpdated) {
+            const lastSeenMS = Date.now() - new Date(lastUpdated).getTime();
+            const diffMinutes = Math.floor(lastSeenMS / 60000);
+
+            if (lastSeenMS < 30 * 1000) {
+              infoText.textContent = '🟢 Live location active';
+            } else {
+              infoText.textContent = `🟡 Last seen ${diffMinutes} minute(s) ago`;
+            }
+          } else {
+            infoText.textContent = '🟡 Location timestamp missing';
+          }
+        }
+      } catch (err) {
+        console.error('❌ Map load error:', err);
+        const infoText = document.getElementById('infoText');
+        if (infoText) {
+          infoText.textContent = '🔴 Location not available. Admin may be offline.';
+        }
+      }
     };
 
     initMap();
-
-    return () => {
-      map?.remove();
-    };
   }, []);
 
   return (
-    <div className="w-full h-full relative">
-      <div id="map" className="w-full h-[90vh]" />
+    <div className="relative w-screen h-screen">
+      <div id="map" className="w-full h-full z-0 rounded-none" />
       <div
-        id="status-text"
-        className="absolute top-4 right-4 bg-white text-sm rounded px-3 py-1 shadow-md z-[1000]"
+        id="infoText"
+        className="absolute top-4 right-4 px-4 py-2 bg-black text-white text-sm rounded-lg shadow-md z-50"
       >
-        Loading location...
+        Loading bus location...
       </div>
     </div>
   );
-};
-
-export default LiveMap;
+}
