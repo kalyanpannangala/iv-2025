@@ -723,7 +723,7 @@ const HomePage = () => {
       {/* Full Screen Video Hero Section - Responsive */}
       <div
         className={`relative w-full overflow-hidden ${
-          isMobile ? "h-screen" : "h-screen"
+          isMobile ? "h-[70vh] min-h-[500px]" : "h-screen"
         }`}
       >
         {/* Video Loading Indicator - only show when video is not loaded and not ended */}
@@ -753,11 +753,16 @@ const HomePage = () => {
           {/* Video element - responsive */}
           <video
             ref={videoRef}
-            className={`w-full h-full object-cover transition-opacity duration-500 ${
+            className={`w-full ${
+              isMobile ? "h-full object-cover" : "h-full object-cover"
+            } transition-opacity duration-500 ${
               hasVideoEnded ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
             style={{
               paddingTop: isMobile ? "60px" : "0",
+              aspectRatio: isMobile ? "16/9" : "auto",
+              minHeight: isMobile ? "400px" : "auto",
+              objectPosition: isMobile ? "center top" : "center center",
             }}
             autoPlay
             muted
@@ -805,11 +810,13 @@ const HomePage = () => {
           {/* Banner with content - only show when video has ended */}
           {hasVideoEnded && (
             <motion.div
-              className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+              className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat ${
+                isMobile ? "bg-[center_30%]" : "bg-center"
+              }`}
               style={{
                 backgroundImage: "url('/Banner.jpg')",
                 backgroundSize: "cover",
-                backgroundPosition: "center center",
+                backgroundPosition: isMobile ? "center 30%" : "center center",
               }}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
