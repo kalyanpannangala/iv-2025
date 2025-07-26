@@ -38,8 +38,7 @@ const visitingPlaces = [
     location: "Ooty, Tamil Nadu",
     description:
       "India's premier radio astronomy facility featuring giant telescopes that explore the mysteries of the universe. A fascinating glimpse into cutting-edge space research.",
-    image:
-      "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?q=80&w=1000",
+    image: "http://rac.ncra.tifr.res.in/images/rac_images/rac-gate1.jpg",
     details:
       "Established by the Tata Institute of Fundamental Research, this center houses the Ooty Radio Telescope - one of the largest radio telescopes in the world.",
     mapUrl: "https://maps.google.com/?q=Radio+Astronomy+Centre+Ooty",
@@ -58,7 +57,7 @@ const visitingPlaces = [
     description:
       "The highest mountain peak in the Nilgiris at 2,637 meters, offering breathtaking panoramic views of the surrounding valleys and tea estates.",
     image:
-      "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?q=80&w=1000",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/3d/3d/ce/doddabetta-peak.jpg?w=1100&h=600&s=1",
     details:
       "Experience the thrill of standing atop South India's highest peak with telescopic views of the beautiful Nilgiri landscape stretching for miles.",
     mapUrl: "https://maps.google.com/?q=Doddabetta+Peak+Ooty",
@@ -77,7 +76,7 @@ const visitingPlaces = [
     description:
       "Discover the fascinating journey of tea from leaf to cup at this working tea factory. Learn about traditional tea processing methods and sample premium Nilgiri teas.",
     image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000",
+      "https://media-cdn.tripadvisor.com/media/photo-o/07/4d/e4/b7/dodabetta-tea-museum.jpg",
     details:
       "Watch the complete tea manufacturing process and understand how Ooty's unique climate creates some of the world's finest tea varieties.",
     mapUrl: "https://maps.google.com/?q=Tea+Factory+Museum+Ooty",
@@ -96,7 +95,7 @@ const visitingPlaces = [
     description:
       "A 55-acre paradise established in 1848, home to rare trees, exotic ferns, and a 20-million-year-old fossilized tree trunk that tells ancient stories.",
     image:
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1000",
+      "https://scontent.fhyd14-2.fna.fbcdn.net/v/t39.30808-6/475271722_618993217191172_1440793912567144003_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=HTGMW8YcC7MQ7kNvwErwD-_&_nc_oc=AdlReilNjF4I7yv1DieuId7-t3_0ZpsynDp3byWNhUeJI0qPN8vSVYkfybLElZ6lc6xbvFzySwsv3QN1RfTxv7g7&_nc_zt=23&_nc_ht=scontent.fhyd14-2.fna&_nc_gid=7yOvgVR-bOGoeM4reo2YSA&oh=00_AfRRLf_i5aQUqCPyuDy_rTW6c3wGNc9nFIZb20mwJqiE8w&oe=688A82BE",
     details:
       "Explore diverse flora from around the world, including rare species of plants, beautiful flower beds, and the famous fossil tree trunk.",
     mapUrl: "https://maps.google.com/?q=Government+Botanical+Garden+Ooty",
@@ -115,7 +114,7 @@ const visitingPlaces = [
     description:
       "A serene artificial lake built in 1824, perfect for boating adventures surrounded by eucalyptus trees and stunning mountain backdrop views.",
     image:
-      "https://images.unsplash.com/photo-1439066615861-d1af74d74000?q=80&w=1000",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/72/6e/a0/ooty-lake.jpg?w=1400&h=800&s=1",
     details:
       "Enjoy peaceful boat rides while surrounded by the natural beauty of the Nilgiris, with options for paddle boats and rowboats.",
     mapUrl: "https://maps.google.com/?q=Ooty+Lake+Tamil+Nadu",
@@ -130,7 +129,7 @@ const visitingPlaces = [
     description:
       "Ancient hilltop temple dedicated to Lord Murugan, accessible by climbing 800 steps. Offers spiritual serenity and panoramic city views.",
     image:
-      "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?q=80&w=1000",
+      "https://www.connectingtraveller.com/images/localtip/1656664309images%20(9).jpeg",
     details:
       "This sacred temple atop Marudhamalai hill provides a spiritual experience combined with stunning views of Coimbatore city.",
     mapUrl: "https://maps.google.com/?q=Maruthamalai+Murugan+Temple+Coimbatore",
@@ -145,7 +144,7 @@ const visitingPlaces = [
     description:
       "A unique museum showcasing the rich biodiversity of the Western Ghats with rare specimens, wildlife exhibits, and conservation displays.",
     image:
-      "https://images.unsplash.com/photo-1481833761820-0509d3217039?q=80&w=1000",
+      "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nobk1tDEHiwx0YKSszGGSRe5fZmTcpCy33ubUiRtHORwDeJ2rUJPMWam-aHFDPk00cYzJaN-9QJyHLirgIBv6pLKYFEsvKIKq57vVQqVck8QJlImVXbQbgFlHTPJQ4SIlOxzzFqi5CboJMO=s1360-w1360-h1020-rw",
     details:
       "Explore the fascinating world of Western Ghats biodiversity through interactive exhibits and learn about forest conservation efforts.",
     mapUrl: "https://maps.google.com/?q=Gass+Forest+Museum+Coimbatore",
@@ -164,7 +163,7 @@ const visitingPlaces = [
     description:
       "Magnificent 300-foot waterfall cascading through dense forest, often called the 'Niagara of South India' for its spectacular beauty.",
     image:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1000",
+      "https://lh3.googleusercontent.com/gps-cs-s/AC9h4noUNMsPuUjWL9tDkuKKi4h0DdfQkS3RjAEl9A7GarXvgPmhWXDFm3oc3YoZems_majHsn4qR26jBLwQY_Oa_ORxvPuJuHp8X4paKu-sQjxWIIRigHHf8LnStf0jlSHNfGk9dWOp=s1360-w1360-h1020-rw",
     details:
       "Experience the raw power and beauty of nature as water cascades down rocky cliffs surrounded by lush greenery and misty atmosphere.",
     mapUrl: "https://maps.google.com/?q=Kovai+Kutralam+Falls+Coimbatore",
@@ -179,7 +178,7 @@ const visitingPlaces = [
     description:
       "World-renowned spiritual center featuring the mystical Dhyanalinga temple and the awe-inspiring 112-foot Adiyogi Shiva statue.",
     image:
-      "https://images.unsplash.com/photo-1607976963199-ecdc7b2c0374?q=80&w=1000",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/3d/72/e9/caption.jpg?w=1200&h=-1&s=1",
     details:
       "Experience inner peace at this spiritual oasis, home to powerful energy centers and the world's largest bust sculpture recognized by Guinness World Records.",
     mapUrl: "https://maps.google.com/?q=Isha+Foundation+Coimbatore",
@@ -261,9 +260,10 @@ const schedule = [
 
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [activeDay, setActiveDay] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [hasVideoEnded, setHasVideoEnded] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -279,6 +279,20 @@ const HomePage = () => {
 
   useEffect(() => {
     setIsVisible(true);
+
+    // Mobile detection with proper cleanup
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Check for saved modal state
+    const savedModalState = sessionStorage.getItem("hasShownModal");
+    if (savedModalState === "true") {
+      setHasShownModal(true);
+    }
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
 
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -323,6 +337,7 @@ const HomePage = () => {
             setTimeout(() => {
               setShowModal(true);
               setHasShownModal(true);
+              sessionStorage.setItem("hasShownModal", "true");
             }, 2000);
           }
         });
@@ -334,34 +349,74 @@ const HomePage = () => {
       observer.observe(itineraryRef.current);
     }
 
+    // Video fallback timer - if video doesn't load within 5 seconds, show banner
+    const videoFallbackTimer = setTimeout(() => {
+      if (!videoLoaded && !hasVideoEnded) {
+        console.log("Video loading timeout, showing banner");
+        setVideoLoaded(true);
+        setHasVideoEnded(true);
+        setIsVideoPlaying(false);
+      }
+    }, 5000);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", checkMobile);
       clearInterval(countdownTimer);
+      clearTimeout(videoFallbackTimer);
       observer.disconnect();
     };
-  }, [hasShownModal]);
+  }, [hasShownModal, videoLoaded, hasVideoEnded]);
 
-  // Handle video load and autoplay
-  const handleVideoLoad = async () => {
-    setVideoLoaded(true);
-    if (videoRef.current) {
+  // Consolidated video autoplay effect
+  useEffect(() => {
+    if (!videoRef.current || !videoLoaded || hasVideoEnded) return;
+
+    const attemptAutoplay = async () => {
       try {
-        // Ensure video starts from beginning
-        videoRef.current.currentTime = 0;
-        await videoRef.current.play();
+        console.log("Attempting video autoplay");
+        const video = videoRef.current;
+        if (!video) return;
+
+        video.currentTime = 0;
+        video.muted = true; // Required for autoplay in most browsers
+
+        await video.play();
         setIsVideoPlaying(true);
-        setHasVideoEnded(false);
+        console.log("Video autoplay successful");
       } catch (error) {
-        console.log("Video autoplay failed:", error);
-        // If autoplay fails, show the banner with play button
+        console.log("Video autoplay failed, showing banner:", error);
         setIsVideoPlaying(false);
         setHasVideoEnded(true);
       }
-    }
+    };
+
+    // Small delay to ensure DOM is ready
+    const timeout = setTimeout(attemptAutoplay, 100);
+    return () => clearTimeout(timeout);
+  }, [videoLoaded, hasVideoEnded]);
+
+  // Handle video load and autoplay
+  const handleVideoLoad = () => {
+    console.log("Video data loaded");
+    setVideoLoaded(true);
   };
 
-  const handleVideoError = () => {
-    console.log("Video failed to load");
+  const handleVideoError = (error: any) => {
+    console.log("Video failed to load:", error);
+    setIsVideoPlaying(false);
+    setHasVideoEnded(true);
+    setVideoLoaded(true); // Set to true to hide loading indicator
+  };
+
+  const handleVideoCanPlay = () => {
+    console.log("Video can play");
+    // Don't autoplay here, let the useEffect handle it
+    setVideoLoaded(true);
+  };
+
+  const handleVideoEnded = () => {
+    console.log("Video ended");
     setIsVideoPlaying(false);
     setHasVideoEnded(true);
   };
@@ -369,10 +424,19 @@ const HomePage = () => {
   const playVideoFromStart = async () => {
     if (videoRef.current) {
       try {
+        console.log("Attempting to play video from start");
+
+        // Reset states first
+        setHasVideoEnded(false);
+        setIsVideoPlaying(false);
+
+        // Reset video to start
         videoRef.current.currentTime = 0;
+
+        // Attempt to play
         await videoRef.current.play();
         setIsVideoPlaying(true);
-        setHasVideoEnded(false);
+        console.log("Video playing from start");
       } catch (error) {
         console.log("Video play failed:", error);
         setIsVideoPlaying(false);
@@ -424,6 +488,7 @@ const HomePage = () => {
               onClick={() => {
                 setShowModal(false);
                 setHasShownModal(true);
+                sessionStorage.setItem("hasShownModal", "true");
               }}
             >
               <motion.div
@@ -480,6 +545,7 @@ const HomePage = () => {
                       onClick={() => {
                         setShowModal(false);
                         setHasShownModal(true);
+                        sessionStorage.setItem("hasShownModal", "true");
                       }}
                     >
                       Register Now!
@@ -491,6 +557,7 @@ const HomePage = () => {
                       onClick={() => {
                         setShowModal(false);
                         setHasShownModal(true);
+                        sessionStorage.setItem("hasShownModal", "true");
                       }}
                     >
                       Later
@@ -502,126 +569,267 @@ const HomePage = () => {
           )}
       </AnimatePresence>
 
-      {/* Enhanced Transparent Navigation - Hidden during video, shown after */}
+      {/* Enhanced Mobile-First Responsive Navigation */}
       <AnimatePresence>
-        {hasVideoEnded && (
+        {(hasVideoEnded || isMobile) && (
           <motion.header
-            className="fixed top-0 left-0 right-0 z-50 py-4 px-8 backdrop-blur-xl bg-black/20 border-b border-white/10 shadow-2xl"
+            className="fixed top-0 left-0 right-0 z-50 backdrop-blur-2xl bg-black/30 border-b border-white/10 shadow-2xl"
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{
+              duration: 0.8,
+              ease: [0.4, 0, 0.2, 1],
+              type: "spring",
+              stiffness: 100,
+            }}
           >
-            <nav className="max-w-7xl mx-auto flex items-center justify-between">
-              <motion.div
-                className="flex items-center space-x-3"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-              >
-                <img src="/favicon.ico" alt="Logo" className="w-10 h-10" />
-                <span className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                  IV 2025
-                </span>
-              </motion.div>
-
-              <motion.div
-                className="flex items-center space-x-4"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-              >
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-6 py-3 bg-white/10 backdrop-blur-md text-white rounded-2xl border border-white/20 font-medium tracking-wide transition-all duration-300 hover:bg-white/20 hover:shadow-xl relative overflow-hidden group"
+            {/* Mobile-optimized container */}
+            <nav className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2 sm:py-3">
+              <div className="flex items-center justify-between h-12 sm:h-14">
+                {/* Logo Section - Optimized for mobile */}
+                <motion.div
+                  className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0"
+                  whileHover={{ scale: 1.02 }}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
                 >
-                  <span className="relative z-10">Home</span>
-                  <div className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
-                </motion.button>
-
-                <Link href="/gps">
-                  <motion.button
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-gradient-to-r from-emerald-500/80 to-teal-600/80 backdrop-blur-md text-white rounded-2xl border border-emerald-400/30 font-medium tracking-wide transition-all duration-300 hover:shadow-xl relative overflow-hidden group"
+                  <motion.div
+                    className="relative"
+                    whileHover={{ rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <span className="relative z-10 flex items-center space-x-2">
-                      <Navigation className="w-4 h-4" />
-                      <span>GPS Tracker</span>
+                    <img
+                      src="/favicon.ico"
+                      alt="Logo"
+                      className="w-7 h-7 sm:w-9 sm:h-9 drop-shadow-lg"
+                    />
+                    {/* Subtle glow effect */}
+                    <div className="absolute inset-0 bg-blue-400/20 blur-lg rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </motion.div>
+
+                  <div className="flex flex-col">
+                    <span className="text-base sm:text-lg lg:text-xl font-black bg-gradient-to-r from-white via-blue-200 to-indigo-300 bg-clip-text text-transparent leading-tight">
+                      IV 2025
                     </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/90 to-teal-700/90 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+                    <span className="text-xs text-blue-300/80 font-medium hidden sm:block leading-none">
+                      Adventure Awaits
+                    </span>
+                  </div>
+                </motion.div>
+
+                {/* Navigation Buttons - Mobile Optimized */}
+                <motion.div
+                  className="flex items-center space-x-2 sm:space-x-3"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+                >
+                  {/* Home Button - Compact for mobile */}
+                  <motion.button
+                    whileHover={{
+                      scale: 1.05,
+                      y: -1,
+                      boxShadow: "0 8px 25px rgba(255,255,255,0.1)",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group relative px-2.5 sm:px-4 lg:px-6 py-1.5 sm:py-2 lg:py-2.5 bg-white/5 hover:bg-white/15 backdrop-blur-md text-white rounded-lg sm:rounded-xl lg:rounded-2xl border border-white/10 hover:border-white/30 font-medium text-xs sm:text-sm lg:text-base tracking-wide transition-all duration-300 overflow-hidden"
+                  >
+                    {/* Animated background */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+
+                    {/* Content */}
+                    <span className="relative z-10 flex items-center space-x-1 sm:space-x-2">
+                      <span className="hidden sm:inline">🏠</span>
+                      <span>Home</span>
+                    </span>
                   </motion.button>
-                </Link>
-              </motion.div>
+
+                  {/* GPS Button - Enhanced for mobile */}
+                  <Link href="/gps">
+                    <motion.button
+                      whileHover={{
+                        scale: 1.05,
+                        y: -1,
+                        boxShadow: "0 8px 25px rgba(16, 185, 129, 0.3)",
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      className="group relative px-2.5 sm:px-4 lg:px-6 py-1.5 sm:py-2 lg:py-2.5 bg-gradient-to-r from-emerald-500/70 to-teal-600/70 hover:from-emerald-500/90 hover:to-teal-600/90 backdrop-blur-md text-white rounded-lg sm:rounded-xl lg:rounded-2xl border border-emerald-400/30 hover:border-emerald-400/60 font-medium text-xs sm:text-sm lg:text-base tracking-wide transition-all duration-300 overflow-hidden shadow-lg"
+                    >
+                      {/* Animated shine effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                        initial={{ x: "-100%" }}
+                        whileHover={{ x: "100%" }}
+                        transition={{ duration: 0.6 }}
+                      />
+
+                      {/* Content with responsive text */}
+                      <span className="relative z-10 flex items-center space-x-1 sm:space-x-2">
+                        <motion.div
+                          whileHover={{ rotate: 15 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <Navigation className="w-3 h-3 sm:w-4 sm:h-4" />
+                        </motion.div>
+
+                        {/* Responsive text */}
+                        <span className="hidden min-[380px]:inline sm:hidden lg:inline">
+                          GPS Tracker
+                        </span>
+                        <span className="min-[380px]:hidden sm:inline lg:hidden">
+                          GPS
+                        </span>
+                        <span className="hidden sm:hidden min-[380px]:hidden">
+                          📍
+                        </span>
+                      </span>
+                    </motion.button>
+                  </Link>
+
+                  {/* Mobile Menu Indicator - Shows current page */}
+                  <motion.div
+                    className="flex sm:hidden items-center justify-center w-8 h-8 bg-blue-500/20 backdrop-blur-md rounded-full border border-blue-400/30"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <motion.div
+                      className="w-2 h-2 bg-blue-400 rounded-full"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  </motion.div>
+                </motion.div>
+              </div>
+
+              {/* Subtle bottom border animation */}
+              <motion.div
+                className="absolute bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+              />
             </nav>
           </motion.header>
         )}
       </AnimatePresence>
 
-      {/* Full Screen Video Hero Section */}
-      <div className="relative h-screen w-full overflow-hidden">
+      {/* Full Screen Video Hero Section - Responsive */}
+      <div
+        className={`relative w-full overflow-hidden ${
+          isMobile ? "h-screen" : "h-screen"
+        }`}
+      >
+        {/* Video Loading Indicator - only show when video is not loaded and not ended */}
+        {!videoLoaded && (
+          <motion.div
+            className="absolute inset-0 bg-gray-900 flex items-center justify-center z-20"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="text-center text-white">
+              <motion.div
+                className="w-16 h-16 border-4 border-blue-500/30 border-t-blue-500 rounded-full mx-auto mb-4"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              />
+              <p className="text-xl font-semibold">Loading Video...</p>
+              <p className="text-sm text-gray-400 mt-2">
+                Preparing your amazing journey
+              </p>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Video Container with responsive padding for mobile navbar */}
         <div className="absolute inset-0 w-full h-full">
-          {/* Always show video first, only show banner after video ends or fails */}
-          {!hasVideoEnded ? (
-            <motion.video
-              ref={videoRef}
-              className="w-full h-full object-cover"
-              autoPlay
-              muted
-              playsInline
-              controls={false}
-              preload="auto"
-              onLoadedData={handleVideoLoad}
-              onEnded={() => {
-                setIsVideoPlaying(false);
-                setHasVideoEnded(true);
-              }}
-              onError={handleVideoError}
-              onCanPlay={() => {
-                // Ensure video plays when it's ready
-                if (videoRef.current && !hasVideoEnded) {
-                  videoRef.current.play().catch((error) => {
-                    console.log("Video play failed:", error);
-                    setIsVideoPlaying(false);
-                    setHasVideoEnded(true);
-                  });
-                }
-              }}
-              initial={{ scale: 1.02 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 2, ease: "easeOut" }}
-            >
-              <source src="/Hero.mp4" type="video/mp4" />
-              {/* Fallback for when video fails to load */}
-              <div className="w-full h-full bg-gradient-to-br from-gray-800 via-blue-900 to-indigo-900 flex items-center justify-center">
-                <div className="text-white text-center">
-                  <div className="text-6xl mb-4">🎬</div>
-                  <p className="text-xl">Loading Video...</p>
-                </div>
-              </div>
-            </motion.video>
-          ) : (
+          {/* Video element - responsive */}
+          <video
+            ref={videoRef}
+            className={`w-full h-full object-cover transition-opacity duration-500 ${
+              hasVideoEnded ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
+            style={{
+              paddingTop: isMobile ? "60px" : "0",
+            }}
+            autoPlay
+            muted
+            playsInline
+            loop={false}
+            controls={false}
+            preload="metadata"
+            poster="/Banner.jpg"
+            onLoadedData={handleVideoLoad}
+            onLoadedMetadata={() => {
+              console.log("Video metadata loaded");
+              setVideoLoaded(true);
+            }}
+            onEnded={handleVideoEnded}
+            onError={handleVideoError}
+            onCanPlay={handleVideoCanPlay}
+            onPlay={() => {
+              console.log("Video started playing");
+              setIsVideoPlaying(true);
+            }}
+            onPause={() => {
+              console.log("Video paused");
+              setIsVideoPlaying(false);
+            }}
+            onWaiting={() => {
+              console.log("Video is waiting for data");
+            }}
+            onPlaying={() => {
+              console.log("Video is playing");
+              setIsVideoPlaying(true);
+            }}
+            onLoadStart={() => {
+              console.log("Video load started");
+            }}
+            onProgress={() => {
+              console.log("Video loading progress");
+            }}
+          >
+            <source src="/Hero.mp4" type="video/mp4" />
+            <source src="/Hero.webm" type="video/webm" />
+            {/* Fallback for when video fails to load */}
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Banner with content - only show when video has ended */}
+          {hasVideoEnded && (
             <motion.div
-              className="w-full h-full bg-cover bg-center bg-no-repeat relative"
-              style={{ backgroundImage: "url('/Banner.jpg')" }}
+              className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: "url('/Banner.jpg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+              }}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
               <div className="absolute inset-0 bg-black/40"></div>
 
-              {/* Content overlay when video has ended */}
+              {/* Content overlay when video has ended - with mobile padding */}
               <motion.div
                 className="absolute inset-0 flex items-center justify-center"
+                style={{
+                  paddingTop: isMobile ? "60px" : "0",
+                }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 1 }}
               >
                 <div className="text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
                   <motion.h1
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black bg-gradient-to-r from-white via-blue-200 to-indigo-300 bg-clip-text text-transparent mb-4 sm:mb-6 lg:mb-8"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black bg-gradient-to-r from-white via-blue-200 to-indigo-300 bg-clip-text text-transparent mb-3 sm:mb-4 lg:mb-6"
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.7, duration: 0.8 }}
@@ -630,7 +838,7 @@ const HomePage = () => {
                   </motion.h1>
 
                   <motion.h2
-                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6"
+                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4"
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.9, duration: 0.8 }}
@@ -639,7 +847,7 @@ const HomePage = () => {
                   </motion.h2>
 
                   <motion.p
-                    className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-4"
+                    className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-200 max-w-3xl mx-auto mb-4 sm:mb-6 leading-relaxed px-4"
                     initial={{ y: 30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 1.1, duration: 0.8 }}
@@ -671,10 +879,11 @@ const HomePage = () => {
                     <motion.button
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur-md text-white font-bold rounded-2xl border border-white/30 hover:bg-white/30 transition-all duration-300 text-sm sm:text-base"
+                      className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur-md text-white font-bold rounded-2xl border border-white/30 hover:bg-white/30 transition-all duration-300 text-sm sm:text-base flex items-center justify-center space-x-2"
                       onClick={playVideoFromStart}
                     >
-                      ▶ Watch Video
+                      <Play className="w-4 h-4" />
+                      <span>Watch Video</span>
                     </motion.button>
                   </motion.div>
                 </div>
@@ -686,7 +895,7 @@ const HomePage = () => {
         {/* Enhanced Video Play Button (when video has ended) - Responsive */}
         {hasVideoEnded && (
           <motion.button
-            className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/40 transition-all duration-300 group shadow-2xl"
+            className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/40 transition-all duration-300 group shadow-2xl"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={playVideoFromStart}
@@ -694,7 +903,7 @@ const HomePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.8 }}
           >
-            <Play className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white ml-1 group-hover:scale-110 transition-transform" />
+            <Play className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white ml-2 group-hover:scale-110 transition-transform" />
           </motion.button>
         )}
 
@@ -711,7 +920,7 @@ const HomePage = () => {
         </motion.div>
 
         {/* Video Controls Overlay (only visible during video playback) */}
-        {isVideoPlaying && !hasVideoEnded && (
+        {isVideoPlaying && !hasVideoEnded && videoLoaded && (
           <motion.div
             className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-8 flex items-center space-x-3 sm:space-x-4"
             initial={{ opacity: 0, y: 20 }}
@@ -720,24 +929,46 @@ const HomePage = () => {
             transition={{ duration: 0.5 }}
           >
             <motion.button
-              className="w-10 h-10 sm:w-12 sm:h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-black/60 transition-all duration-300"
+              className="w-12 h-12 sm:w-14 sm:h-14 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 hover:bg-black/60 transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => {
-                setIsVideoPlaying(false);
-                setHasVideoEnded(true);
                 if (videoRef.current) {
                   videoRef.current.pause();
+                  setIsVideoPlaying(false);
+                  setHasVideoEnded(true);
                 }
               }}
             >
-              <span className="text-white text-xs sm:text-sm">⏸</span>
+              <span className="text-white text-lg">⏸</span>
             </motion.button>
 
-            <div className="hidden sm:block text-white/80 text-xs sm:text-sm bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+            <div className="hidden sm:flex items-center text-white/80 text-xs sm:text-sm bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+              <div className="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></div>
               Playing Hero Video
             </div>
           </motion.div>
+        )}
+
+        {/* Skip Video Button (appears after a few seconds of playback) */}
+        {isVideoPlaying && !hasVideoEnded && videoLoaded && (
+          <motion.button
+            className="absolute top-4 sm:top-6 md:top-8 right-4 sm:right-6 md:right-8 px-4 py-2 bg-black/40 backdrop-blur-md text-white rounded-full border border-white/20 hover:bg-black/60 transition-all duration-300 text-sm"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3, duration: 0.5 }}
+            onClick={() => {
+              if (videoRef.current) {
+                videoRef.current.pause();
+                setIsVideoPlaying(false);
+                setHasVideoEnded(true);
+              }
+            }}
+          >
+            Skip Video
+          </motion.button>
         )}
       </div>
 
@@ -1571,39 +1802,15 @@ const HomePage = () => {
                     >
                       {place.name}
                     </motion.h3>
-                    <motion.div
-                      className="flex items-center space-x-2"
+                    <motion.p
+                      className="text-gray-300 text-sm"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 + 0.4 }}
                     >
-                      <MapPin className="h-5 w-5 text-emerald-300" />
-                      <p className="text-emerald-200 font-medium">
-                        {place.location}
-                      </p>
-                    </motion.div>
+                      {place.location}
+                    </motion.p>
                   </div>
-
-                  {/* Hover Information Overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-indigo-900/95 via-purple-800/80 to-blue-700/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-6"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                  >
-                    <div className="text-center text-white">
-                      <motion.div
-                        initial={{ scale: 0, rotate: -180 }}
-                        whileHover={{ scale: 1, rotate: 0 }}
-                        transition={{ duration: 0.5, type: "spring" }}
-                      >
-                        <Eye className="w-16 h-16 mx-auto mb-4 text-blue-200" />
-                      </motion.div>
-                      <p className="text-lg font-bold mb-2">Explore Details</p>
-                      <p className="text-sm text-blue-200">
-                        Click to discover more
-                      </p>
-                    </div>
-                  </motion.div>
                 </div>
 
                 {/* Enhanced Content Section */}
@@ -1611,9 +1818,9 @@ const HomePage = () => {
                   {/* Description */}
                   <motion.p
                     className="text-gray-300 leading-relaxed mb-6 text-base"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: index * 0.1 + 0.6 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 + 0.5 }}
                   >
                     {place.description}
                   </motion.p>
@@ -1623,7 +1830,7 @@ const HomePage = () => {
                     className="mb-6 p-4 bg-gray-800/60 backdrop-blur-xl rounded-2xl border border-gray-700/50"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 + 0.7 }}
+                    transition={{ delay: index * 0.1 + 0.6 }}
                   >
                     <div className="flex items-start space-x-3">
                       <Info className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
@@ -1638,7 +1845,7 @@ const HomePage = () => {
                     className="mb-6"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 + 0.8 }}
+                    transition={{ delay: index * 0.1 + 0.7 }}
                   >
                     <h4 className="text-white font-bold text-sm mb-3 flex items-center space-x-2">
                       <Star className="w-4 h-4 text-yellow-400" />
@@ -1662,13 +1869,13 @@ const HomePage = () => {
                     </div>
                   </motion.div>
 
-                  {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3">
+                  {/* Action Button - Only Google Maps */}
+                  <div className="flex justify-center">
                     <motion.a
                       href={place.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2"
+                      className="w-full px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center space-x-2"
                       whileHover={{ scale: 1.05, y: -3 }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, y: 20 }}
@@ -1679,18 +1886,6 @@ const HomePage = () => {
                       <span>View on Maps</span>
                       <ArrowRight className="w-4 h-4" />
                     </motion.a>
-
-                    <motion.button
-                      className="px-6 py-3 bg-white/5 backdrop-blur-md text-gray-300 rounded-2xl text-sm font-semibold border border-white/10 hover:bg-white/10 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2"
-                      whileHover={{ scale: 1.05, y: -3 }}
-                      whileTap={{ scale: 0.95 }}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 + 1.1 }}
-                    >
-                      <Camera className="w-4 h-4" />
-                      <span>Gallery</span>
-                    </motion.button>
                   </div>
                 </div>
 

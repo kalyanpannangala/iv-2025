@@ -1,6 +1,6 @@
 // pages/api/adminGPS/admin-location.ts
 
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from "next";
 
 type LocationData = {
   latitude: number;
@@ -12,11 +12,11 @@ type LocationData = {
 let latestLocation: LocationData | null = null;
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
+  if (req.method === "POST") {
     const { latitude, longitude } = req.body;
 
-    if (typeof latitude !== 'number' || typeof longitude !== 'number') {
-      return res.status(400).json({ message: 'Invalid coordinates' });
+    if (typeof latitude !== "number" || typeof longitude !== "number") {
+      return res.status(400).json({ message: "Invalid coordinates" });
     }
 
     latestLocation = {
@@ -25,18 +25,28 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       lastUpdated: new Date().toISOString(),
     };
 
-    return res.status(200).json({ message: 'Location saved successfully' });
+    return res.status(200).json({ message: "Location saved successfully" });
   }
 
-  if (req.method === 'GET') {
+  if (req.method === "GET") {
     if (!latestLocation) {
-      return res.status(404).json({ message: 'No location available' });
+      // Return fallback coordinates with clear indication
+      const fallbackLocation = {
+        latitude: 13.628724891518354, // Tirupati starting point
+        longitude: 79.42627315507207,
+        lastUpdated: null,
+        message: "Using starting point - GPS not yet active",
+        isFallback: true,
+      };
+
+      return res.status(200).json(fallbackLocation);
     }
 
-    return res.status(200).json(latestLocation);
+    return res.status(200).json({
+      ...latestLocation,
+      isFallback: false,
+    });
   }
 
-  return res.status(405).json({ message: 'Method not allowed' });
-
-  
+  return res.status(405).json({ message: "Method not allowed" });
 }
