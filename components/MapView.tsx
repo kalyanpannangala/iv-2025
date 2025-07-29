@@ -7,94 +7,90 @@ import { Navigation, Home, MapPin, X, ChevronUp } from "lucide-react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { ROUTE_COORDINATES } from "../config";
-import { getSnappedRoute } from '../components/getSnappedRoute';
+import { getSnappedRoute } from './getSnappedRoute';
 
 // Planned stops with coordinates
 const plannedStops = [
-  {
-    name: "Tirupati",
-    description: "Starting Point - Departure 3:30 PM",
-    coordinates: [13.628724891518354, 79.42627315507207] as [number, number],
-    type: "start",
-    time: "3:30 PM",
-    icon: "🏠",
-  },
-  {
-    name: "Puttur",
-    description: "First Stop - Arrival 4:30 PM",
-    coordinates: [13.4383801, 79.5519144] as [number, number],
-    type: "stop",
-    time: "4:30 PM",
-    icon: "⛽",
-  },
-  {
-    name: "Mettupalayam",
-    description: "Refreshment Stop - Arrival 3:30 AM",
-    coordinates: [11.3019, 76.9392] as [number, number],
-    type: "stop",
-    time: "3:30 AM",
-    icon: "🍽️",
-  },
-  {
-    name: "Ooty",
-    description: "Main Destination - Arrival 7:30 AM",
-    coordinates: [11.4064, 76.6932] as [number, number],
-    type: "destination",
-    time: "7:30 AM",
-    icon: "🏔️",
-  },
-  {
-    name: "Coimbatore",
-    description: "Return Journey Stop",
-    coordinates: [11.0168, 76.9558] as [number, number],
-    type: "stop",
-    time: "4:30 AM",
-    icon: "🕌",
-  },
+  { name: "Tirupati", description: "Starting Point - Departure 3:30 PM", coordinates: [13.628724891518354, 79.42627315507207] as [number, number], type: "start", time: "3:30 PM", icon: "🏠" },
+  { name: "Puttur", description: "First Stop - Arrival 4:30 PM", coordinates: [13.4383801, 79.5519144] as [number, number], type: "stop", time: "4:30 PM", icon: "⛽" },
+  { name: "Mettupalayam", description: "Refreshment Stop - Arrival 3:30 AM", coordinates: [11.3019, 76.9392] as [number, number], type: "stop", time: "3:30 AM", icon: "🍽️" },
+  { name: "Ooty", description: "Main Destination - Arrival 7:30 AM", coordinates: [11.4064, 76.6932] as [number, number], type: "destination", time: "7:30 AM", icon: "🏔️" },
+  { name: "Coimbatore", description: "Return Journey Stop", coordinates: [11.0168, 76.9558] as [number, number], type: "stop", time: "4:30 AM", icon: "🕌" },
 ];
 
 export default function LiveMap() {
   const mapRef = useRef<L.Map | null>(null);
   const markerRef = useRef<L.Marker | null>(null);
+  const polylineRef = useRef<L.Polyline | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [panelOpen, setPanelOpen] = useState(true);
 
-  useEffect(() => {
-    // Mobile detection
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+  const mapContainerRef = useRef<HTMLDivElement>(null);
 
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
     window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
+  // Map initialization (only once)
+  useEffect(() => {
+    if (mapContainerRef.current && !mapRef.current) {
+      mapRef.current = L.map(mapContainerRef.current).setView([13.6287, 79.4262], 12);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(mapRef.current);
+
+      // Add planned stops pins
+      plannedStops.forEach((stop) => {
+        const stopIcon = L.divIcon({
+          html: `
+            <div class="relative flex items-center justify-center">
+              <div class="w-8 h-8 bg-blue-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center text-white text-sm font-bold">
+                ${stop.icon}
+              </div>
+              <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-2 py-1 rounded text-xs whitespace-nowrap border border-gray-300">
+                ${stop.name}
+              </div>
+            </div>
+          `,
+          className: "custom-div-icon",
+          iconSize: [32, 32],
+          iconAnchor: [16, 16],
+        });
+
+        L.marker(stop.coordinates, { icon: stopIcon }).addTo(mapRef.current!)
+          .bindPopup(`
+            <div class="text-center p-2">
+              <h3 class="font-bold text-lg">${stop.icon} ${stop.name}</h3>
+              <p class="text-sm text-gray-600 mb-1">${stop.description}</p>
+              <p class="text-xs bg-blue-100 px-2 py-1 rounded">${stop.time}</p>
+            </div>
+          `);
+      });
+    }
     return () => {
-      window.removeEventListener("resize", checkMobile);
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
     };
   }, []);
 
-  const polylineRef = useRef<L.Polyline | null>(null);
-  const mapContainerRef = useRef<HTMLDivElement>(null);
-
-
-
+  // Polling for live updates (update marker/polyline only)
   useEffect(() => {
-    const initMap = async () => {
+    let isMounted = true;
+    const updateMap = async () => {
       let lat: number | null = null;
       let lng: number | null = null;
       let lastUpdated: string | null = null;
-
-      // Default fallback coordinates (Tirupati - starting point)
-      const defaultCoords: [number, number] = [
-        13.628724891518354, 79.42627315507207,
-      ];
+      const defaultCoords: [number, number] = [13.628724891518354, 79.42627315507207];
 
       try {
         const res = await fetch("/api/adminGPS/admin-location");
-
         if (!res.ok) {
-          console.warn("⚠️ Response not OK", res.status);
-          // Use default coordinates
           lat = defaultCoords[0];
           lng = defaultCoords[1];
           lastUpdated = null;
@@ -103,99 +99,51 @@ export default function LiveMap() {
           lat = data.latitude ?? data.lat;
           lng = data.longitude ?? data.lng;
           lastUpdated = data.lastUpdated ?? null;
-
-          // Check if this is fallback data from API
-          if (data.isFallback) {
-            console.log("📍 API returned fallback coordinates");
-          }
         }
-
-        // Final validation - use fallback if still invalid
         if (
           typeof lat !== "number" ||
           typeof lng !== "number" ||
           isNaN(lat) ||
           isNaN(lng)
         ) {
-          console.warn("Invalid coordinates received, using fallback");
           lat = defaultCoords[0];
           lng = defaultCoords[1];
           lastUpdated = null;
         }
-
         const coords: [number, number] = [lat, lng];
         const snappedCoords = await getSnappedRoute(ROUTE_COORDINATES, process.env.NEXT_PUBLIC_ORS_API_KEY!);
 
-
-
-
-        // Init map
-        if (!mapRef.current && mapContainerRef.current) {
-          mapRef.current = L.map(mapContainerRef.current, {
-            center: coords,
-            zoom: 14,
-          });
-
-          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution: "© OpenStreetMap contributors",
-          }).addTo(mapRef.current);
-
+        // Update polyline
+        if (mapRef.current && snappedCoords.length > 0) {
+          if (polylineRef.current) {
+            mapRef.current.removeLayer(polylineRef.current);
+          }
           polylineRef.current = L.polyline(snappedCoords, {
             color: 'red',
             weight: 4,
-          }).addTo(mapRef.current!);
-
-
-          // Add planned stops pin points
-          plannedStops.forEach((stop) => {
-            const stopIcon = L.divIcon({
-              html: `
-                <div class="relative flex items-center justify-center">
-                  <div class="w-8 h-8 bg-blue-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center text-white text-sm font-bold">
-                    ${stop.icon}
-                  </div>
-                  <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-2 py-1 rounded text-xs whitespace-nowrap border border-gray-300">
-                    ${stop.name}
-                  </div>
-                </div>
-              `,
-              className: "custom-div-icon",
-              iconSize: [32, 32],
-              iconAnchor: [16, 16],
-            });
-
-            L.marker(stop.coordinates, { icon: stopIcon }).addTo(
-              mapRef.current!
-            ).bindPopup(`
-                <div class="text-center p-2">
-                  <h3 class="font-bold text-lg">${stop.icon} ${stop.name}</h3>
-                  <p class="text-sm text-gray-600 mb-1">${stop.description}</p>
-                  <p class="text-xs bg-blue-100 px-2 py-1 rounded">${stop.time}</p>
-                </div>
-              `);
-          });
+          }).addTo(mapRef.current);
         }
 
+        // Update marker
         const busIcon = L.icon({
           iconUrl: "/bus.gif",
           iconSize: [70, 70],
           iconAnchor: [50, 60],
         });
-
-        if (!markerRef.current) {
-          markerRef.current = L.marker(coords, { icon: busIcon }).addTo(
-            mapRef.current!
-          );
-        } else {
-          markerRef.current.setLatLng(coords);
+        if (mapRef.current) {
+          if (!markerRef.current) {
+            markerRef.current = L.marker(coords, { icon: busIcon }).addTo(mapRef.current);
+          } else {
+            markerRef.current.setLatLng(coords);
+          }
         }
 
+        // Update infoText
         const infoText = document.getElementById("infoText");
         if (infoText) {
           if (lastUpdated) {
             const lastSeenMS = Date.now() - new Date(lastUpdated).getTime();
             const diffMinutes = Math.floor(lastSeenMS / 60000);
-
             if (lastSeenMS < 30 * 1000) {
               infoText.textContent = "🟢 Live location active";
               infoText.className =
@@ -206,7 +154,6 @@ export default function LiveMap() {
                 "absolute top-16 sm:top-20 right-4 px-4 py-2 bg-yellow-600 text-white text-sm rounded-lg shadow-md z-50";
             }
           } else {
-            // Using fallback coordinates
             if (lat === 13.628724891518354 && lng === 79.42627315507207) {
               infoText.textContent =
                 "🔵 Showing starting point (Live GPS unavailable)";
@@ -220,101 +167,40 @@ export default function LiveMap() {
           }
         }
       } catch (err) {
-        console.error("❌ Map load error:", err);
-
-        const snappedCoords = await getSnappedRoute(ROUTE_COORDINATES, process.env.NEXT_PUBLIC_ORS_API_KEY!);
-
-
-
-
-        // Even on error, show the map with fallback coordinates
-        const fallbackCoords: [number, number] = [
-          13.628724891518354, 79.42627315507207,
-        ];
-
-        // Init map with fallback
-        if (!mapRef.current && mapContainerRef.current) {
-          mapRef.current = L.map(mapContainerRef.current, {
-            center: fallbackCoords,
-            zoom: 12,
-          });
-
-          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution: "© OpenStreetMap contributors",
-          }).addTo(mapRef.current);
-
-
-
+        // Fallback: show planned route and marker at default location
+        if (mapRef.current) {
+          const fallbackCoords: [number, number] = [13.628724891518354, 79.42627315507207];
+          const snappedCoords = await getSnappedRoute(ROUTE_COORDINATES, process.env.NEXT_PUBLIC_ORS_API_KEY!);
+          if (polylineRef.current) {
+            mapRef.current.removeLayer(polylineRef.current);
+          }
           polylineRef.current = L.polyline(snappedCoords, {
             color: 'red',
             weight: 4,
-          }).addTo(mapRef.current!);
-
-
-          // Add planned stops pin points even in fallback mode
-          plannedStops.forEach((stop) => {
-            const stopIcon = L.divIcon({
-              html: `
-                <div class="relative flex items-center justify-center">
-                  <div class="w-8 h-8 bg-blue-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center text-white text-sm font-bold">
-                    ${stop.icon}
-                  </div>
-                  <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-2 py-1 rounded text-xs whitespace-nowrap border border-gray-300">
-                    ${stop.name}
-                  </div>
-                </div>
-              `,
-              className: "custom-div-icon",
-              iconSize: [32, 32],
-              iconAnchor: [16, 16],
-            });
-
-            L.marker(stop.coordinates, { icon: stopIcon }).addTo(
-              mapRef.current!
-            ).bindPopup(`
-                <div class="text-center p-2">
-                  <h3 class="font-bold text-lg">${stop.icon} ${stop.name}</h3>
-                  <p class="text-sm text-gray-600 mb-1">${stop.description}</p>
-                  <p class="text-xs bg-blue-100 px-2 py-1 rounded">${stop.time}</p>
-                </div>
-              `);
+          }).addTo(mapRef.current);
+          const busIcon = L.icon({
+            iconUrl: "/bus.gif",
+            iconSize: [50, 50],
+            iconAnchor: [25, 25],
           });
-        }
-
-        // Add fallback marker
-        const busIcon = L.icon({
-          iconUrl: "/bus.gif",
-          iconSize: [50, 50],
-          iconAnchor: [25, 25],
-        });
-
-        if (!markerRef.current) {
-          markerRef.current = L.marker(fallbackCoords, { icon: busIcon }).addTo(
-            mapRef.current!
-          );
-        }
-
-        const infoText = document.getElementById("infoText");
-        if (infoText) {
-          infoText.textContent = "🔴 GPS offline - Showing planned route";
-          infoText.className =
-            "absolute top-16 sm:top-20 right-4 px-4 py-2 bg-red-600 text-white text-sm rounded-lg shadow-md z-50";
+          if (!markerRef.current) {
+            markerRef.current = L.marker(fallbackCoords, { icon: busIcon }).addTo(mapRef.current);
+          } else {
+            markerRef.current.setLatLng(fallbackCoords);
+          }
+          const infoText = document.getElementById("infoText");
+          if (infoText) {
+            infoText.textContent = "🔴 GPS offline - Showing planned route";
+            infoText.className =
+              "absolute top-16 sm:top-20 right-4 px-4 py-2 bg-red-600 text-white text-sm rounded-lg shadow-md z-50";
+          }
         }
       }
     };
 
-    initMap();
-
-    // Set up polling for live updates every 10 seconds
-    const interval = setInterval(initMap, 10000);
-
-    return () => {
-      clearInterval(interval);
-      if (mapRef.current) {
-        mapRef.current.remove();
-        mapRef.current = null;
-      }
-    };
+    updateMap();
+    const interval = setInterval(updateMap, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -463,12 +349,16 @@ export default function LiveMap() {
         </motion.header>
       </AnimatePresence>
 
-      {/* Map Container with top padding for navigation */}
+      {/* Map Container */}
       <div
         ref={mapContainerRef}
         id="map"
-        className="w-full h-full z-0 rounded-none"
-        style={{ paddingTop: isMobile ? "60px" : "70px" }}
+        className="w-full z-0 rounded-none"
+        style={{
+          height: `calc(100vh - ${isMobile ? 60 : 70}px)`,
+          marginTop: isMobile ? "60px" : "70px",
+          border: "2px solid red" // Remove this after confirming map works
+        }}
       />
 
       {/* Status indicator */}
@@ -478,6 +368,7 @@ export default function LiveMap() {
       >
         🔄 Loading bus location...
       </div>
+
 
       {/* Control panel */}
       {panelOpen ? (
