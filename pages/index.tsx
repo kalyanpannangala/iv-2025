@@ -163,7 +163,7 @@ const visitingPlaces = [
     description:
       "Magnificent 300-foot waterfall cascading through dense forest, often called the 'Niagara of South India' for its spectacular beauty.",
     image:
-      "https://lh3.googleusercontent.com/gps-cs-s/AC9h4noUNMsPuUjWL9tDkuKKi4h0DdfQkS3RjAEl9A7GarXvgPmhWXDFm3oc3YoZems_majHsn4qR26jBLwQY_Oa_ORxvPuJuHp8X4paKu-sQjxWIIRigHHf8LnStf0jlSHNfGk9dWOp=s1360-w1360-h1020-rw",
+      "/kovaikutralam.webp",
     details:
       "Experience the raw power and beauty of nature as water cascades down rocky cliffs surrounded by lush greenery and misty atmosphere.",
     mapUrl: "https://maps.google.com/?q=Kovai+Kutralam+Falls+Coimbatore",
@@ -611,10 +611,10 @@ const HomePage = () => {
 
                   <div className="flex flex-col">
                     <span className="text-base sm:text-lg lg:text-xl font-black bg-gradient-to-r from-white via-blue-200 to-indigo-300 bg-clip-text text-transparent leading-tight">
-                      IV 2025
+                      Industrial Visit 2025
                     </span>
                     <span className="text-xs text-blue-300/80 font-medium hidden sm:block leading-none">
-                      Adventure Awaits
+                      Dept of CSE - Siddartha Institute of Science and Technology
                     </span>
                   </div>
                 </motion.div>
@@ -694,18 +694,10 @@ const HomePage = () => {
                   </Link>
 
                   {/* Mobile Menu Indicator - Shows current page */}
-                  <motion.div
-                    className="flex sm:hidden items-center justify-center w-8 h-8 bg-blue-500/20 backdrop-blur-md rounded-full border border-blue-400/30"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <motion.div
-                      className="w-2 h-2 bg-blue-400 rounded-full"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  </motion.div>
+
+
                 </motion.div>
+
               </div>
 
               {/* Subtle bottom border animation */}
@@ -722,9 +714,8 @@ const HomePage = () => {
 
       {/* Full Screen Video Hero Section - Responsive */}
       <div
-        className={`relative w-full overflow-hidden ${
-          isMobile ? "h-[70vh] min-h-[500px]" : "h-screen"
-        }`}
+        className={`relative w-full overflow-hidden ${isMobile ? "h-[70vh] min-h-[500px]" : "h-screen"
+          }`}
       >
         {/* Video Loading Indicator - only show when video is not loaded and not ended */}
         {!videoLoaded && (
@@ -753,11 +744,9 @@ const HomePage = () => {
           {/* Video element - responsive */}
           <video
             ref={videoRef}
-            className={`w-full ${
-              isMobile ? "h-full object-cover" : "h-full object-cover"
-            } transition-opacity duration-500 ${
-              hasVideoEnded ? "opacity-0 pointer-events-none" : "opacity-100"
-            }`}
+            className={`w-full ${isMobile ? "h-full object-cover" : "h-full object-cover"
+              } transition-opacity duration-500 ${hasVideoEnded ? "opacity-0 pointer-events-none" : "opacity-100"
+              }`}
             style={{
               paddingTop: isMobile ? "60px" : "0",
               aspectRatio: isMobile ? "16/9" : "auto",
@@ -810,9 +799,8 @@ const HomePage = () => {
           {/* Banner with content - only show when video has ended */}
           {hasVideoEnded && (
             <motion.div
-              className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat ${
-                isMobile ? "bg-[center_30%]" : "bg-center"
-              }`}
+              className={`absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat ${isMobile ? "bg-[center_30%]" : "bg-center"
+                }`}
               style={{
                 backgroundImage: "url('/Banner.jpg')",
                 backgroundSize: "cover",
@@ -1324,25 +1312,23 @@ const HomePage = () => {
                     <motion.button
                       key={index}
                       onClick={() => setActiveDay(index)}
-                      className={`relative px-6 py-4 rounded-2xl font-bold transition-all duration-500 overflow-hidden group ${
-                        activeDay === index
-                          ? "text-white shadow-2xl"
-                          : "text-gray-400 hover:text-white"
-                      }`}
+                      className={`relative px-6 py-4 rounded-2xl font-bold transition-all duration-500 overflow-hidden group ${activeDay === index
+                        ? "text-white shadow-2xl"
+                        : "text-gray-400 hover:text-white"
+                        }`}
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       {/* Animated background */}
                       <motion.div
-                        className={`absolute inset-0 bg-gradient-to-r ${
-                          index === 0
-                            ? "from-blue-500 to-cyan-500"
-                            : index === 1
+                        className={`absolute inset-0 bg-gradient-to-r ${index === 0
+                          ? "from-blue-500 to-cyan-500"
+                          : index === 1
                             ? "from-purple-500 to-pink-500"
                             : index === 2
-                            ? "from-emerald-500 to-teal-500"
-                            : "from-orange-500 to-red-500"
-                        } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                              ? "from-emerald-500 to-teal-500"
+                              : "from-orange-500 to-red-500"
+                          } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                         animate={
                           activeDay === index ? { opacity: 1 } : { opacity: 0 }
                         }
@@ -1389,15 +1375,14 @@ const HomePage = () => {
                 <div className="relative bg-gray-900/60 backdrop-blur-2xl rounded-[2rem] shadow-2xl border border-gray-700/50 overflow-hidden">
                   {/* Dynamic Header */}
                   <div
-                    className={`relative p-8 bg-gradient-to-r ${
-                      activeDay === 0
-                        ? "from-blue-600 via-cyan-600 to-blue-700"
-                        : activeDay === 1
+                    className={`relative p-8 bg-gradient-to-r ${activeDay === 0
+                      ? "from-blue-600 via-cyan-600 to-blue-700"
+                      : activeDay === 1
                         ? "from-purple-600 via-pink-600 to-purple-700"
                         : activeDay === 2
-                        ? "from-emerald-600 via-teal-600 to-emerald-700"
-                        : "from-orange-600 via-red-600 to-orange-700"
-                    } text-white overflow-hidden`}
+                          ? "from-emerald-600 via-teal-600 to-emerald-700"
+                          : "from-orange-600 via-red-600 to-orange-700"
+                      } text-white overflow-hidden`}
                   >
                     {/* Animated background pattern */}
                     <div className="absolute inset-0 opacity-20">
@@ -1462,15 +1447,14 @@ const HomePage = () => {
                           >
                             {/* Timeline dot */}
                             <motion.div
-                              className={`relative w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg z-10 ${
-                                activeDay === 0
-                                  ? "bg-gradient-to-r from-blue-500 to-cyan-500"
-                                  : activeDay === 1
+                              className={`relative w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg z-10 ${activeDay === 0
+                                ? "bg-gradient-to-r from-blue-500 to-cyan-500"
+                                : activeDay === 1
                                   ? "bg-gradient-to-r from-purple-500 to-pink-500"
                                   : activeDay === 2
-                                  ? "bg-gradient-to-r from-emerald-500 to-teal-500"
-                                  : "bg-gradient-to-r from-orange-500 to-red-500"
-                              }`}
+                                    ? "bg-gradient-to-r from-emerald-500 to-teal-500"
+                                    : "bg-gradient-to-r from-orange-500 to-red-500"
+                                }`}
                               whileHover={{ scale: 1.2, rotate: 10 }}
                               transition={{ type: "spring", stiffness: 300 }}
                             >
@@ -1485,15 +1469,14 @@ const HomePage = () => {
                               <div className="flex flex-col md:flex-row md:items-center justify-between">
                                 <div className="flex-1">
                                   <div
-                                    className={`text-sm font-bold mb-2 ${
-                                      activeDay === 0
-                                        ? "text-cyan-300"
-                                        : activeDay === 1
+                                    className={`text-sm font-bold mb-2 ${activeDay === 0
+                                      ? "text-cyan-300"
+                                      : activeDay === 1
                                         ? "text-pink-300"
                                         : activeDay === 2
-                                        ? "text-teal-300"
-                                        : "text-orange-300"
-                                    }`}
+                                          ? "text-teal-300"
+                                          : "text-orange-300"
+                                      }`}
                                   >
                                     {event.time}
                                   </div>
@@ -1509,23 +1492,22 @@ const HomePage = () => {
                                   transition={{ duration: 3, repeat: Infinity }}
                                 >
                                   <div
-                                    className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                                      activeDay === 0
-                                        ? "bg-blue-500/20 text-blue-300"
-                                        : activeDay === 1
+                                    className={`w-12 h-12 rounded-xl flex items-center justify-center ${activeDay === 0
+                                      ? "bg-blue-500/20 text-blue-300"
+                                      : activeDay === 1
                                         ? "bg-purple-500/20 text-purple-300"
                                         : activeDay === 2
-                                        ? "bg-emerald-500/20 text-emerald-300"
-                                        : "bg-orange-500/20 text-orange-300"
-                                    }`}
+                                          ? "bg-emerald-500/20 text-emerald-300"
+                                          : "bg-orange-500/20 text-orange-300"
+                                      }`}
                                   >
                                     {eventIndex % 4 === 0
                                       ? "🚌"
                                       : eventIndex % 4 === 1
-                                      ? "🍽️"
-                                      : eventIndex % 4 === 2
-                                      ? "🏛️"
-                                      : "🌟"}
+                                        ? "🍽️"
+                                        : eventIndex % 4 === 2
+                                          ? "🏛️"
+                                          : "🌟"}
                                   </div>
                                 </motion.div>
                               </div>
@@ -1630,11 +1612,10 @@ const HomePage = () => {
                 {schedule.map((_, index) => (
                   <motion.div
                     key={index}
-                    className={`w-3 h-3 rounded-full ${
-                      index <= activeDay
-                        ? "bg-gradient-to-r from-blue-400 to-purple-400"
-                        : "bg-gray-600"
-                    }`}
+                    className={`w-3 h-3 rounded-full ${index <= activeDay
+                      ? "bg-gradient-to-r from-blue-400 to-purple-400"
+                      : "bg-gray-600"
+                      }`}
                     animate={index === activeDay ? { scale: [1, 1.3, 1] } : {}}
                     transition={{ duration: 1, repeat: Infinity }}
                   />
@@ -1770,19 +1751,18 @@ const HomePage = () => {
 
                   {/* Category Badge */}
                   <motion.div
-                    className={`absolute top-4 left-4 px-4 py-2 rounded-2xl backdrop-blur-md border font-semibold text-sm ${
-                      place.category === "Technology"
-                        ? "bg-blue-500/20 border-blue-400/30 text-blue-200"
-                        : place.category === "Nature"
+                    className={`absolute top-4 left-4 px-4 py-2 rounded-2xl backdrop-blur-md border font-semibold text-sm ${place.category === "Technology"
+                      ? "bg-blue-500/20 border-blue-400/30 text-blue-200"
+                      : place.category === "Nature"
                         ? "bg-emerald-500/20 border-emerald-400/30 text-emerald-200"
                         : place.category === "Culture"
-                        ? "bg-purple-500/20 border-purple-400/30 text-purple-200"
-                        : place.category === "Spiritual"
-                        ? "bg-orange-500/20 border-orange-400/30 text-orange-200"
-                        : place.category === "Recreation"
-                        ? "bg-cyan-500/20 border-cyan-400/30 text-cyan-200"
-                        : "bg-pink-500/20 border-pink-400/30 text-pink-200"
-                    }`}
+                          ? "bg-purple-500/20 border-purple-400/30 text-purple-200"
+                          : place.category === "Spiritual"
+                            ? "bg-orange-500/20 border-orange-400/30 text-orange-200"
+                            : place.category === "Recreation"
+                              ? "bg-cyan-500/20 border-cyan-400/30 text-cyan-200"
+                              : "bg-pink-500/20 border-pink-400/30 text-pink-200"
+                      }`}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 + 0.5 }}
@@ -1954,7 +1934,7 @@ const HomePage = () => {
                 color: "from-blue-500 to-indigo-500",
               },
               {
-                number: "90+",
+                number: "105+",
                 label: "Students",
                 icon: Users,
                 color: "from-purple-500 to-pink-500",
@@ -2048,12 +2028,18 @@ const HomePage = () => {
           >
             {/* Logo Section */}
             <div className="flex items-center justify-center space-x-4 mb-8">
+              <img
+                src="/favicon.ico"
+                alt="Logo"
+                className="w-10 h-10 mr-2 drop-shadow-lg"
+                style={{ minWidth: '2.5rem' }}
+              />
               <div className="text-left">
                 <h3 className="text-3xl font-black bg-gradient-to-r from-white via-blue-200 to-indigo-300 bg-clip-text text-transparent">
                   Industrial Visit 2025
                 </h3>
                 <p className="text-blue-300 font-medium">
-                  Computer Science Engineering
+                  Computer Science Engineering - Siddartha Institute of Science and Technology
                 </p>
               </div>
             </div>
@@ -2093,7 +2079,7 @@ const HomePage = () => {
                           .getElementById("itinerary")
                           ?.scrollIntoView({ behavior: "smooth" }),
                     },
-                    { label: "Destinations", action: () => {} },
+                    { label: "Destinations", action: () => { } },
                     { label: "GPS Tracker", href: "/gps" },
                   ].map((link, index) => (
                     <motion.button
@@ -2153,81 +2139,70 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-              {/* Copyright */}
-              <div className="text-center md:text-left">
-                <p className="text-gray-400 text-sm">
+            <div className="flex flex-col items-center justify-center space-y-2">
+              <div className="flex flex-col items-center space-y-1">
+                <p className="text-gray-400 text-sm text-center">
                   © 2025 Industrial Visit Experience. All rights reserved.
                 </p>
-              </div>
-
-              {/* Developer Credits */}
-              <div className="flex items-center space-x-6">
-                <span className="text-gray-400 text-sm">Crafted with</span>
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-red-400"
-                >
-                  <Heart className="w-4 h-4 fill-current" />
-                </motion.div>
-                <span className="text-gray-400 text-sm">by</span>
-
-                <div className="flex items-center space-x-4">
-                  <motion.a
-                    href="https://www.linkedin.com/in/kalyanpannangala"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                  >
-                    <Linkedin className="w-4 h-4 text-blue-400" />
-                    <span className="text-blue-300 font-medium text-sm">
-                      Kalyan Pannangala
+                <div className="text-gray-400 text-sm flex flex-col items-center sm:flex-row sm:space-x-1">
+                  <span className="flex items-center">
+                    Crafted with
+                    <span className="text-red-400 mx-1">
+                      <Heart className="inline w-4 h-4 fill-current" />
                     </span>
-                    <ExternalLink className="w-3 h-3 text-gray-400" />
-                  </motion.a>
-
-                  <motion.a
-                    href="https://www.linkedin.com/in/vaigandladurgesh"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                  >
-                    <Linkedin className="w-4 h-4 text-blue-400" />
-                    <span className="text-blue-300 font-medium text-sm">
-                      Durgesh Vaigandla
-                    </span>
-                    <ExternalLink className="w-3 h-3 text-gray-400" />
-                  </motion.a>
+                    by
+                  </span>
+                  <div className="flex flex-col sm:flex-row sm:space-x-4 items-center mt-1 sm:mt-0">
+                    <motion.a
+                      href="https://www.linkedin.com/in/kalyanpannangala"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 px-2 py-1 sm:px-4 sm:py-2 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300 text-xs sm:text-sm mt-1 sm:mt-0"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                    >
+                      <Linkedin className="w-4 h-4 text-blue-400" />
+                      <span className="text-blue-300 font-medium">Kalyan Pannangala</span>
+                      <ExternalLink className="w-3 h-3 text-gray-400" />
+                    </motion.a>
+                    <motion.a
+                      href="https://www.linkedin.com/in/vaigandladurgesh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 px-2 py-1 sm:px-4 sm:py-2 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300 text-xs sm:text-sm mt-1 sm:mt-0"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                    >
+                      <Linkedin className="w-4 h-4 text-blue-400" />
+                      <span className="text-blue-300 font-medium">Durgesh Vaigandla</span>
+                      <ExternalLink className="w-3 h-3 text-gray-400" />
+                    </motion.a>
+                  </div>
                 </div>
               </div>
             </div>
+          </motion.div>
 
-            {/* Additional Footer Info */}
-            <motion.div
-              className="mt-6 pt-6 border-t border-gray-800/50 text-center"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-            >
-              <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-8 text-xs text-gray-500">
-                <div className="flex items-center space-x-2">
-                  <Calendar className="w-3 h-3" />
-                  <span>July 2025 Industrial Visit</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Users className="w-3 h-3" />
-                  <span>90+ Students Participating</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <MapPin className="w-3 h-3" />
-                  <span>Ooty & Coimbatore</span>
-                </div>
+          {/* Additional Footer Info */}
+          <motion.div
+            className="mt-6 pt-6 border-t border-gray-800/50 text-center"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
+            <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-8 text-xs text-gray-500">
+              <div className="flex items-center space-x-2">
+                <Calendar className="w-3 h-3" />
+                <span>July 2025 Industrial Visit</span>
               </div>
-            </motion.div>
+              <div className="flex items-center space-x-2">
+                <Users className="w-3 h-3" />
+                <span>100+ Students Participating</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-3 h-3" />
+                <span>Ooty & Coimbatore</span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </footer>

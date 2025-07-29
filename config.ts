@@ -1,5 +1,3 @@
-export const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN!;
-
 export const ROUTE_COORDINATES: [number, number][] = [
         [13.628724891518354, 79.42627315507207], // Tirupati
         [13.426047734267023, 79.57409187168503], // Puttur
@@ -8,8 +6,7 @@ export const ROUTE_COORDINATES: [number, number][] = [
         [11.30898997695959, 76.93663244238549],  // Mettupalayam
         [11.390165614026865, 76.71924769776794], // Ooty
         [11.045282553980117, 76.94735380477154], // Coimbatore
-        [13.426047734267023, 79.57409187168503], // Puttur
-        [13.628724891518354, 79.42627315507207]  // Tirupati
+        
       ];
       
 

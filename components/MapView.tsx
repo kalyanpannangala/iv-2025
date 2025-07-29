@@ -3,10 +3,11 @@
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Navigation, Home, MapPin } from "lucide-react";
+import { Navigation, Home, MapPin, X, ChevronUp } from "lucide-react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { ROUTE_COORDINATES } from "../config";
+import { getSnappedRoute } from '../components/getSnappedRoute';
 
 // Planned stops with coordinates
 const plannedStops = [
@@ -56,6 +57,7 @@ export default function LiveMap() {
   const mapRef = useRef<L.Map | null>(null);
   const markerRef = useRef<L.Marker | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [panelOpen, setPanelOpen] = useState(true);
 
   useEffect(() => {
     // Mobile detection
@@ -70,6 +72,11 @@ export default function LiveMap() {
       window.removeEventListener("resize", checkMobile);
     };
   }, []);
+
+  const polylineRef = useRef<L.Polyline | null>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+
+
 
   useEffect(() => {
     const initMap = async () => {
@@ -117,10 +124,14 @@ export default function LiveMap() {
         }
 
         const coords: [number, number] = [lat, lng];
+        const snappedCoords = await getSnappedRoute(ROUTE_COORDINATES, process.env.NEXT_PUBLIC_ORS_API_KEY!);
+
+
+
 
         // Init map
-        if (!mapRef.current) {
-          mapRef.current = L.map("map", {
+        if (!mapRef.current && mapContainerRef.current) {
+          mapRef.current = L.map(mapContainerRef.current, {
             center: coords,
             zoom: 14,
           });
@@ -129,11 +140,11 @@ export default function LiveMap() {
             attribution: "© OpenStreetMap contributors",
           }).addTo(mapRef.current);
 
-          L.polyline(ROUTE_COORDINATES, {
-            color: "red",
+          polylineRef.current = L.polyline(snappedCoords, {
+            color: 'red',
             weight: 4,
-            dashArray: "6, 6",
-          }).addTo(mapRef.current);
+          }).addTo(mapRef.current!);
+
 
           // Add planned stops pin points
           plannedStops.forEach((stop) => {
@@ -167,13 +178,13 @@ export default function LiveMap() {
 
         const busIcon = L.icon({
           iconUrl: "/bus.gif",
-          iconSize: [50, 50],
-          iconAnchor: [25, 25],
+          iconSize: [70, 70],
+          iconAnchor: [50, 60],
         });
 
         if (!markerRef.current) {
           markerRef.current = L.marker(coords, { icon: busIcon }).addTo(
-            mapRef.current
+            mapRef.current!
           );
         } else {
           markerRef.current.setLatLng(coords);
@@ -211,14 +222,19 @@ export default function LiveMap() {
       } catch (err) {
         console.error("❌ Map load error:", err);
 
+        const snappedCoords = await getSnappedRoute(ROUTE_COORDINATES, process.env.NEXT_PUBLIC_ORS_API_KEY!);
+
+
+
+
         // Even on error, show the map with fallback coordinates
         const fallbackCoords: [number, number] = [
           13.628724891518354, 79.42627315507207,
         ];
 
         // Init map with fallback
-        if (!mapRef.current) {
-          mapRef.current = L.map("map", {
+        if (!mapRef.current && mapContainerRef.current) {
+          mapRef.current = L.map(mapContainerRef.current, {
             center: fallbackCoords,
             zoom: 12,
           });
@@ -227,11 +243,13 @@ export default function LiveMap() {
             attribution: "© OpenStreetMap contributors",
           }).addTo(mapRef.current);
 
-          L.polyline(ROUTE_COORDINATES, {
-            color: "red",
+
+
+          polylineRef.current = L.polyline(snappedCoords, {
+            color: 'red',
             weight: 4,
-            dashArray: "6, 6",
-          }).addTo(mapRef.current);
+          }).addTo(mapRef.current!);
+
 
           // Add planned stops pin points even in fallback mode
           plannedStops.forEach((stop) => {
@@ -272,7 +290,7 @@ export default function LiveMap() {
 
         if (!markerRef.current) {
           markerRef.current = L.marker(fallbackCoords, { icon: busIcon }).addTo(
-            mapRef.current
+            mapRef.current!
           );
         }
 
@@ -358,10 +376,10 @@ export default function LiveMap() {
 
                 <div className="flex flex-col">
                   <span className="text-base sm:text-lg lg:text-xl font-black bg-gradient-to-r from-white via-blue-200 to-indigo-300 bg-clip-text text-transparent leading-tight">
-                    IV 2025
+                    Industrial Visit 2025
                   </span>
                   <span className="text-xs text-blue-300/80 font-medium hidden sm:block leading-none">
-                    GPS Tracker
+                    Dept of CSE - Siddartha Institute of Science and Technology
                   </span>
                 </div>
               </motion.div>
@@ -447,6 +465,7 @@ export default function LiveMap() {
 
       {/* Map Container with top padding for navigation */}
       <div
+        ref={mapContainerRef}
         id="map"
         className="w-full h-full z-0 rounded-none"
         style={{ paddingTop: isMobile ? "60px" : "70px" }}
@@ -461,50 +480,69 @@ export default function LiveMap() {
       </div>
 
       {/* Control panel */}
-      <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md text-white p-4 rounded-lg shadow-lg z-50 border border-gray-600">
-        <h3 className="text-lg font-bold mb-2 text-blue-300">
-          🚌 Live Bus Tracker
-        </h3>
-        <p className="text-sm text-gray-300 mb-3">Industrial Visit 2025</p>
+      {panelOpen ? (
+        <div className="absolute bottom-1 left-1 bg-black/80 backdrop-blur-md text-white p-2 rounded-lg shadow-lg z-30 border border-gray-500 w-55 max-w-xs">
+          {/* Close button */}
+          <button
+            onClick={() => setPanelOpen(false)}
+            className="absolute top-2 right-2 text-gray-400 hover:text-white"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5" />
+          </button>
+          <h3 className="text-lg font-bold mb-2 text-blue-300">
+            🚌 Live Bus Tracker
+          </h3>
+          <p className="text-sm text-gray-300 mb-3">Industrial Visit 2025</p>
 
+          <button
+            onClick={() => window.location.reload()}
+            className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-medium transition-colors duration-200 mb-3"
+          >
+            🔄 Refresh Location
+          </button>
+
+          {/* Planned Stops Legend */}
+          <div className="mb-3">
+            <h4 className="text-sm font-semibold text-blue-200 mb-2">
+              📍 Planned Stops:
+            </h4>
+            <div className="space-y-1 text-xs text-gray-300">
+              {plannedStops.map((stop, index) => (
+                <div key={index} className="flex items-center space-x-2">
+                  <span>{stop.icon}</span>
+                  <span>{stop.name}</span>
+                  <span className="text-gray-400">({stop.time})</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="text-xs text-gray-400">
+            <div className="flex items-center space-x-2 mb-1">
+              <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+              <span>Planned Route</span>
+            </div>
+            <div className="flex items-center space-x-2 mb-1">
+              <span className="w-3 h-3 bg-blue-500 rounded-full"></span>
+              <span>Planned Stops</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+              <span>Live Bus Location</span>
+            </div>
+          </div>
+        </div>
+      ) : (
         <button
-          onClick={() => window.location.reload()}
-          className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-medium transition-colors duration-200 mb-3"
+          onClick={() => setPanelOpen(true)}
+          className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md text-white px-4 py-2 rounded-lg shadow-lg z-50 border border-gray-600 flex items-center space-x-2"
+          aria-label="Show Info"
         >
-          🔄 Refresh Location
+          <span>Info</span>
+          <ChevronUp className="w-4 h-4" />
         </button>
-
-        {/* Planned Stops Legend */}
-        <div className="mb-3">
-          <h4 className="text-sm font-semibold text-blue-200 mb-2">
-            📍 Planned Stops:
-          </h4>
-          <div className="space-y-1 text-xs text-gray-300">
-            {plannedStops.map((stop, index) => (
-              <div key={index} className="flex items-center space-x-2">
-                <span>{stop.icon}</span>
-                <span>{stop.name}</span>
-                <span className="text-gray-400">({stop.time})</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="text-xs text-gray-400">
-          <div className="flex items-center space-x-2 mb-1">
-            <span className="w-3 h-3 bg-red-500 rounded-full"></span>
-            <span>Planned Route</span>
-          </div>
-          <div className="flex items-center space-x-2 mb-1">
-            <span className="w-3 h-3 bg-blue-500 rounded-full"></span>
-            <span>Planned Stops</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="w-3 h-3 bg-green-500 rounded-full"></span>
-            <span>Live Bus Location</span>
-          </div>
-        </div>
-      </div>
+      )}
 
       {/* Emergency contact */}
       <div className="absolute bottom-4 right-4 bg-emerald-600/90 backdrop-blur-md text-white p-3 rounded-lg shadow-lg z-50 border border-emerald-500">
