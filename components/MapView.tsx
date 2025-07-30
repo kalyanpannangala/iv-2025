@@ -144,26 +144,30 @@ export default function LiveMap() {
           if (lastUpdated) {
             const lastSeenMS = Date.now() - new Date(lastUpdated).getTime();
             const diffMinutes = Math.floor(lastSeenMS / 60000);
+            const diffHours = Math.floor(lastSeenMS / 3600000);
+            const diffDays = Math.floor(lastSeenMS / 86400000);
+
             if (lastSeenMS < 30 * 1000) {
               infoText.textContent = "🟢 Live location active";
               infoText.className =
                 "absolute top-16 sm:top-20 right-4 px-4 py-2 bg-green-600 text-white text-sm rounded-lg shadow-md z-50";
+            } else if (diffDays > 0) {
+              infoText.textContent = `🟡 Last seen ${diffDays} day(s) ago`;
+              infoText.className =
+                "absolute top-16 sm:top-20 right-4 px-4 py-2 bg-yellow-600 text-white text-sm rounded-lg shadow-md z-50";
+            } else if (diffHours > 0) {
+              infoText.textContent = `🟡 Last seen ${diffHours} hour(s) ago`;
+              infoText.className =
+                "absolute top-16 sm:top-20 right-4 px-4 py-2 bg-yellow-600 text-white text-sm rounded-lg shadow-md z-50";
             } else {
               infoText.textContent = `🟡 Last seen ${diffMinutes} minute(s) ago`;
               infoText.className =
                 "absolute top-16 sm:top-20 right-4 px-4 py-2 bg-yellow-600 text-white text-sm rounded-lg shadow-md z-50";
             }
           } else {
-            if (lat === 13.628724891518354 && lng === 79.42627315507207) {
-              infoText.textContent =
-                "🔵 Showing starting point (Live GPS unavailable)";
-              infoText.className =
-                "absolute top-16 sm:top-20 right-4 px-4 py-2 bg-blue-600 text-white text-sm rounded-lg shadow-md z-50";
-            } else {
-              infoText.textContent = "🟡 Location timestamp missing";
-              infoText.className =
-                "absolute top-16 sm:top-20 right-4 px-4 py-2 bg-yellow-600 text-white text-sm rounded-lg shadow-md z-50";
-            }
+            infoText.textContent = "🔴 GPS offline - Showing planned route";
+            infoText.className =
+              "absolute top-16 sm:top-20 right-4 px-4 py-2 bg-red-600 text-white text-sm rounded-lg shadow-md z-50";
           }
         }
       } catch (err) {
@@ -204,7 +208,7 @@ export default function LiveMap() {
   }, []);
 
   return (
-    <div className="relative w-screen h-screen bg-gray-900">
+    <div className="relative w-screen h-screen bg-gray-900 overflow-hidden">
       {/* Custom CSS for map pins */}
       <style jsx global>{`
         .custom-div-icon {
@@ -353,11 +357,10 @@ export default function LiveMap() {
       <div
         ref={mapContainerRef}
         id="map"
-        className="w-full z-0 rounded-none"
+        className="w-full h-full z-0 rounded-none absolute inset-0"
         style={{
-          height: `calc(100vh - ${isMobile ? 60 : 70}px)`,
-          marginTop: isMobile ? "60px" : "70px",
-          border: "2px solid red" // Remove this after confirming map works
+          top: isMobile ? "60px" : "70px",
+          height: `calc(100vh - ${isMobile ? 60 : 70}px)`
         }}
       />
 
